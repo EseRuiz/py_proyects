@@ -21,6 +21,4 @@ def scalene(sides):
     if a+b > c and a+c > b and b+c >a:
         return True
     return False
-        
-a=isosceles([4, 4, 4])
-print(a)
+
