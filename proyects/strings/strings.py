@@ -57,6 +57,3 @@ def adjective_to_verb(sentence, index):
     sentence = sentence.replace(".","")
     words = sentence.split(' ')
     return words[index]+'en'
-
-a = adjective_to_verb('His expression went dark.', -1)
-print(a)
