@@ -17,6 +17,11 @@ impares_cuad = [(int(im)**2) for im in range (1,101) if im % 2 != 0]
 
 set_list = {num for num in range (1,11) if  num % 3 == 0}
 
+var = "3598-21507X"
+
+arr_ct = ['10' if num == 'X' else num for num in var ]
+##['3', '5', '9', '8', '2', '1', '5', '0', '7', '10']
+
 tuples = [('a', 1), ('b', 2), ('c', 3)]
 
 dict_tuple = {llave : valor for llave,valor in tuples if llave == 'b' }
