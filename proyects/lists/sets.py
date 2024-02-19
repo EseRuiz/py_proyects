@@ -125,7 +125,7 @@ def singleton_ingredients(dishes, intersection):
     The function should return a `set` of ingredients that only appear in a single dish.
     """
     new_dish_inter = (dish - intersection for dish in dishes)
-    return (set.union(*new_dish_inter))
+    return (set.union(*new_dish_inter))#TODO estudiar el * y ** en las listas
     
 
 a = check_drinks('Bloody Mary', ['celery', 'celery salt', 'lemon juice', 'pepper', 'tomato juice', 'vodka', 'worcestershire sauce'])
