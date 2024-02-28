@@ -14,12 +14,12 @@ def generate_seat_letters(number):
 
     """
     letters = ['A','B','C','D']
-    num = 0
+    nume = 0
     for num in range(number):
-        if num >= len(letters):
-            num = 0
-        yield letters[num]
-        num += 1
+        if nume >= len(letters):
+            nume = 0
+        yield letters[nume]
+        nume += 1
 
 
 def generate_seats(number):
@@ -91,8 +91,8 @@ def generate_codes(seat_numbers, flight_id):
      
 
 a = generate_seat_letters(5)
-#for combo in generate_seats(15*4):
-#    print(combo)
+for combo in generate_seat_letters(8):
+    print(combo)
 
 b = generate_codes(["12A", "38B", "69C", "102B"],"KL1022")
 print(next(b))
