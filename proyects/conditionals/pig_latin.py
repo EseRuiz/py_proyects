@@ -3,12 +3,12 @@ def translate(text):
     final_word=""
     first_list=['a','e','i','o','u','xr','yt']
     consonants_list=['p', 'q', 'b', 't', 'd', 'c', 'j', 'k', 'g', 'f', 'v', 's', 'z', 'm', 'n', 'ñ', 'l', 'x', 'r', 'w', 'e', 'y', 'h']
- 
-    new_text = new_text = [word for word in text.split() if word.strip()]
+    #e en ambas listas'?
+    new_text = [word for word in text.split() if word.strip()]
     
     for words in new_text:
         word = [n for n in words]
-        print(word)
+        print(word)#para q este for?
         if word[0] in first_list or word[0]+word[1] in first_list :
             return  text + "ay"
         
