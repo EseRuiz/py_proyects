@@ -5,6 +5,7 @@ def best_hands(hands):
     #filtrado = re.sub(r'[^JQK0-9]', '', *hands)
     #contando = {'10' if carta == 'J' or carta == 'Q' or carta == 'K' else carta: filtrado.count(carta) for carta in filtrado}
     result = []
+    color_count = []
     max_card_value = None
     max_card_hands = []
     
@@ -15,6 +16,7 @@ def best_hands(hands):
         dict_hand = {}
         filtr_color = re.findall(r'[SCDH]', hand.replace(" ", ""))
         dict_color = {letra: filtr_color.count(letra) for letra in filtr_color}
+        color_count.append(dict_color)
         filtrado = re.sub(r'[^JQKA10-9DSHC]', '', hand)
         for carta in filtrado:
             if carta.isdigit():
@@ -32,12 +34,20 @@ def best_hands(hands):
                         dict_hand[carta] = 1
                     else:
                         dict_hand[carta] += 1
-
         dict_hand = dict(sorted(dict_hand.items(), key=lambda x: (int(x[0]), x[0]) if x[0].isdigit() else (float('inf'), x[0])))
         result.append(dict_hand)
 
     if all(len(d) == 5 for d in result): #high card vd high card, straight not yet
         hand_strs = [''.join(hand_dict.keys()) for hand_dict in result]
+        if len(hand_strs) == 3:
+            for i in range(len(hand_strs)-1):
+                if max(hand_strs[i]) > max(hand_strs[i+1]) :
+                    max_card_hands.append(hands[i])
+                if max(hand_strs[i]) < max(hand_strs[i+1]) :
+                    max_card_hands.append(hands[i+1])
+            return [max_card_hands[1]]     
+                    
+
         for i in range(len(result) - 1):
             if list(result[i].keys()) == list(result[i + 1].keys()) and hand_strs[i] not in list_straight and hand_strs[i+1] not in list_straight :
                 max_card_hands.append(hands[i])
@@ -48,9 +58,19 @@ def best_hands(hands):
                 max_card_hands.append(hands[i])
             elif list(result[i].keys()) < list(result[i + 1].keys()) and len(result)>2:
                 max_card_hands.pop(i-1)
-        if hand_strs[0] > hand_strs[1] and hand_strs[0] in list_straight:#straight max
+
+        if max(color_count[0].values()) == 5 and max(color_count[1].values()) < 5:
             max_card_hands.append(hands[0])
-        if hand_strs[0] < hand_strs[1] and hand_strs[0] in list_straight:
+        if max(color_count[0].values()) < 5 and max(color_count[1].values()) == 5:
+            max_card_hands.append(hands[1])
+        if hand_strs[0] in list_straight and hand_strs[1] in list_straight:
+            if list_straight.index(hand_strs[0]) > list_straight.index(hand_strs[1]):
+                max_card_hands.append(hands[0])
+            if list_straight.index(hand_strs[0]) < list_straight.index(hand_strs[1]):
+                max_card_hands.append(hands[1])                                                                       
+        if hand_strs[0] > hand_strs[1] and hand_strs[0] in list_straight and hand_strs[1] not in list_straight and max(color_count[0].values()) < 5 and max(color_count[1].values()) < 5:#straight max
+            max_card_hands.append(hands[0])
+        if hand_strs[0] < hand_strs[1] and hand_strs[1] in list_straight and hand_strs[0] not in list_straight and max(color_count[0].values()) < 5 and max(color_count[1].values()) < 5:
             max_card_hands.append(hands[1])
 
     if all(len(d) == 4 for d in result):#one pair in both hands
@@ -127,6 +147,55 @@ def best_hands(hands):
             max_card_hands.append(hands[0])
         if hand_strs[0] not in list_straight and hand_strs[1] in list_straight:
             max_card_hands.append(hands[1])
+
+    if all(len(d) == 2 for d in result):
+        hand_strs = [''.join(hand_dict.keys()) for hand_dict in result]
+        three1 = [k for k, v in result[0].items() if v == 3]
+        three2 = [k for k, v in result[1].items() if v == 3]
+        pairs1 = [k for k, v in result[0].items() if v == 2]
+        pairs2 = [k for k, v in result[1].items() if v == 2]
+        four1 = [k for k, v in result[0].items() if v == 4]
+        four2 = [k for k, v in result[1].items() if v == 4]
+        rest1 = [k for k, v in result[0].items() if v == 1]
+        rest2 = [k for k, v in result[1].items() if v == 1]
+
+        if len(hand_strs[0]) == 2 and len(hand_strs[1]) == 2:
+            if four1 == four2:
+                if rest1 > rest2:
+                    max_card_hands.append(hands[0])
+                if rest1 < rest2 :
+                    max_card_hands.append(hands[1]) 
+            if four1 > four2:
+                max_card_hands.append(hands[0])
+            if four1 < four2 :
+                max_card_hands.append(hands[1]) 
+        if three1  ==  three2 and four1 == [] and four2 == []:
+            if pairs1 > pairs2:
+                max_card_hands.append(hands[0])
+            if pairs1 < pairs2:
+                max_card_hands.append(hands[1])
+        if three1 > three2 and four1 == [] and four2 == []:
+            max_card_hands.append(hands[0])
+        if three1 < three2 and four1 == [] and four2 == []:
+            max_card_hands.append(hands[1])
+
+    if any(len(d) == 2 for d in result):
+        hand_strs = [''.join(hand_dict.keys()) for hand_dict in result]
+        three1 = [k for k, v in result[0].items() if v == 3]
+        three2 = [k for k, v in result[1].items() if v == 3]
+        pairs1 = [k for k, v in result[0].items() if v == 2]
+        pairs2 = [k for k, v in result[1].items() if v == 2]
+        
+        if len(hand_strs[0]) in list_straight and max(color_count[0].values()) == 5 and hand_strs[1] == 2:
+            max_card_hands.append(hands[0])
+        if len(hand_strs[0]) == 2 and hand_strs[1] in list_straight and max(color_count[1].values()) == 5:
+            max_card_hands.append(hands[1])
+        if len(hand_strs[0]) == 2 and len(hand_strs[1]) != 2 and hand_strs[1] not in list_straight:
+            max_card_hands.append(hands[0])
+        if len(hand_strs[0]) != 2 and len(hand_strs[1]) == 2 and hand_strs[0] not in list_straight:
+            max_card_hands.append(hands[1])
+
+
     return max_card_hands
 
 
@@ -172,3 +241,25 @@ def best_hands(hands):
 # print(t == ["2C 3D 7H 5H 2S"], t)
 # u = best_hands(["4S 6C 7S 8D 5H", "5S 7H 8S 9D 6H"])
 # print(u == ["5S 7H 8S 9D 6H"], u)
+# v = best_hands(["2H 3C 4D 5D 6H", "4S AH 3S 2D 5H"])
+# print(v == ["2H 3C 4D 5D 6H"], v)
+# w = best_hands(["4C 6H 7D 8D 5H", "2S 4S 5S 6S 7S"])
+# print(w == ["2S 4S 5S 6S 7S"], w)
+# x =  best_hands(["2H 7H 8H 9H 6H", "3S 5S 6S 7S 8S"])
+# print(x == ["2H 7H 8H 9H 6H"],x)
+# y = best_hands(["3H 6H 7H 8H 5H", "4S 5H 4C 5D 4H"])
+# print(y == ["4S 5H 4C 5D 4H"], y)
+# z = best_hands(["4H 4S 4D 9S 9D", "5H 5S 5D 8S 8D"])
+# print(z == ["5H 5S 5D 8S 8D"], z)
+# aa = best_hands(["5H 5S 5D 9S 9D", "5H 5S 5D 8S 8D"])
+# print(aa == ["5H 5S 5D 9S 9D"] , aa)
+# bb = best_hands(["4S 5H 4D 5D 4H", "3S 3H 2S 3D 3C"])
+# print(bb == ["3S 3H 2S 3D 3C"],bb)
+# cc = best_hands(["2S 2H 2C 8D 2D", "4S 5H 5S 5D 5C"])
+# print(cc == ["4S 5H 5S 5D 5C"],cc)
+# dd = best_hands(["3S 3H 2S 3D 3C", "3S 3H 4S 3D 3C"])
+# print(dd == ["3S 3H 4S 3D 3C"], dd)
+# ee = best_hands(["4S 5H 5S 5D 5C", "7S 8S 9S 6S 10S"])
+# print(ee == ["7S 8S 9S 6S 10S"],ee)
+# ff = best_hands(["4D 5S 6S 8D 3C", "2S 4C 7S 9H 10H", "3S 4S 5D 6H JH"])
+# print(ff == ["3S 4S 5D 6H JH"], ff)
