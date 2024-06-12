@@ -28,7 +28,7 @@ class Allergies:
 # print(Allergies(5).allergic_to("peanuts"))
 # print(Allergies(5).lst, ["peanuts"])
 
-Si self.score fuera 5 (binario 0101) y ALLERGIES[self.item] fuera 2 (binario 0010), la operación sería:
+# Si self.score fuera 5 (binario 0101) y ALLERGIES[self.item] fuera 2 (binario 0010), la operación sería:
 
 # 0101 (5)
 # & 0010 (2)
