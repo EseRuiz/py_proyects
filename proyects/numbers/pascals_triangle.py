@@ -34,3 +34,19 @@ TRIANGLE = [
     [1, 9, 36, 84, 126, 126, 84, 36, 9, 1],
 ]
 print(TRIANGLE[:3])
+
+# Ejemplo de Ejecución
+# Supongamos que llamamos a rows(3):
+
+# rows(3) llama a rows(2).
+# rows(2) llama a rows(1).
+# rows(1) retorna [[1]].
+# rows(2) recibe [[1]] y construye:
+# fil_anterior es [[1]]
+# fil_actual es [1, 1]
+# Retorna [[1], [1, 1]]
+# rows(3) recibe [[1], [1, 1]] y construye:
+# fil_anterior es [[1], [1, 1]]
+# fil_actual es [1, 2, 1] (calculado sumando 1+1 del paso anterior)
+# Retorna [[1], [1, 1], [1, 2, 1]]
+# Así, la función construye el Triángulo de Pascal recursivamente fila por fila.
