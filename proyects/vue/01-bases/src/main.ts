@@ -4,6 +4,10 @@ import viteLogo from '/vite.svg'
 
 //import './bases/01-const-let'
 //import './bases/02-objects.ts'
+//import './bases/03-arrays.ts'
+//import './bases/04-functions.ts'
+//import './bases/05-deses-obj.ts'
+import './bases/06-deses-arr.ts'
 
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
