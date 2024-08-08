@@ -11,5 +11,5 @@ console.log( getHeroById(100));
 export const getHeroesByOwner = (owner:string) => {
     return heroes.filter(hero => hero.owner === owner) ?? {}
 }
-
-console.log(getHeroesByOwner('Marvel'))
+const [ d, m] = owners;
+console.log(getHeroesByOwner(m))
