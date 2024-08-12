@@ -1,4 +1,12 @@
-const heroes = [
+export interface Hero {
+    id:number;
+    name: string;
+    owner: Owner;
+}
+
+export type Owner = 'DC'|'Marvel';
+
+const heroes: Hero[] = [
     {
         id: 1,
         name: 'Batman',
@@ -27,6 +35,7 @@ const heroes = [
 ];
 
 
-export const owners = ['DC','Marvel'];
+export const owners = ['DC','Marvel'] as const;
+
 
 export default heroes;
