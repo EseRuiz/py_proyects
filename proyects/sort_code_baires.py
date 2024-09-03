@@ -6,3 +6,4 @@ def sort_code(code):
 
 a = sort_code("cbaja")
 print(a)
+print("hi")
