@@ -5,5 +5,3 @@ def sort_code(code):
     return str_list
 
 a = sort_code("cbaja")
-print(a)
-print("hi")
