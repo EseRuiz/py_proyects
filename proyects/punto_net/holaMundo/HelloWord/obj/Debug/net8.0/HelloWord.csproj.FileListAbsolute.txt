@@ -1,0 +1,15 @@
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\bin\Debug\net8.0\HelloWord.exe
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\bin\Debug\net8.0\HelloWord.deps.json
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\bin\Debug\net8.0\HelloWord.runtimeconfig.json
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\bin\Debug\net8.0\HelloWord.dll
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\bin\Debug\net8.0\HelloWord.pdb
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.AssemblyInfoInputs.cache
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.AssemblyInfo.cs
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.csproj.CoreCompileInputs.cache
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.sourcelink.json
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.dll
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\refint\HelloWord.dll
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.pdb
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\HelloWord.genruntimeconfig.cache
+C:\Users\Stephen\Documents\proyectoPy\py_proyects\proyects\punto_net\holaMundo\HelloWord\obj\Debug\net8.0\ref\HelloWord.dll
