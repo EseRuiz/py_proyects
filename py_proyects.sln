@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proyects", "proyects", "{2CD63DCA-1EE2-4F28-BF87-B18D74FDA4D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "punto_net", "punto_net", "{32852B2D-EE5B-467E-8EAC-77AFC2ED9896}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "holaMundo", "holaMundo", "{640704EC-C9A6-4A10-B67B-063C251F5057}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWord", "proyects\punto_net\holaMundo\HelloWord\HelloWord.csproj", "{3028A30B-6FB2-4423-ACD0-433AF8F801DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWord.Tests", "proyects\punto_net\holaMundo\HelloWord.Tests\HelloWord.Tests.csproj", "{FEA6EB90-221B-4833-A9EC-BBFDB8739066}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3028A30B-6FB2-4423-ACD0-433AF8F801DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3028A30B-6FB2-4423-ACD0-433AF8F801DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3028A30B-6FB2-4423-ACD0-433AF8F801DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3028A30B-6FB2-4423-ACD0-433AF8F801DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA6EB90-221B-4833-A9EC-BBFDB8739066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA6EB90-221B-4833-A9EC-BBFDB8739066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA6EB90-221B-4833-A9EC-BBFDB8739066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA6EB90-221B-4833-A9EC-BBFDB8739066}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{32852B2D-EE5B-467E-8EAC-77AFC2ED9896} = {2CD63DCA-1EE2-4F28-BF87-B18D74FDA4D7}
+		{640704EC-C9A6-4A10-B67B-063C251F5057} = {32852B2D-EE5B-467E-8EAC-77AFC2ED9896}
+		{3028A30B-6FB2-4423-ACD0-433AF8F801DD} = {640704EC-C9A6-4A10-B67B-063C251F5057}
+		{FEA6EB90-221B-4833-A9EC-BBFDB8739066} = {640704EC-C9A6-4A10-B67B-063C251F5057}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3FDE2C1-9FDE-484F-86FD-135A2473F38D}
+	EndGlobalSection
+EndGlobal
