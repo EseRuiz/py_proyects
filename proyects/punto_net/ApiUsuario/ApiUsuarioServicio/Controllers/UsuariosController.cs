@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore; // Asegúrate de que esto esté presente
+using MiApiDeServicios.Data;
 using MiApiDeServicios.Models;
+using System.Threading.Tasks;
 
 namespace MiApiDeServicios.Controllers
 {
@@ -7,69 +10,70 @@ namespace MiApiDeServicios.Controllers
     [Route("api/[controller]")]
     public class UsuariosController : ControllerBase
     {
-        private static List<Usuario> usuarios = new List<Usuario>();
+        private readonly ApplicationDbContext _context;
 
-        
-        [HttpPost("registrar")]
-        public IActionResult RegistrarUsuario([FromBody] Usuario usuario)
+        public UsuariosController(ApplicationDbContext context)
         {
-            usuarios.Add(usuario);
+            _context = context;
+        }
+
+        [HttpPost("registrar")]
+        public async Task<IActionResult> RegistrarUsuario([FromBody] Usuario usuario)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _context.Usuarios.Add(usuario);
+            await _context.SaveChangesAsync();
             return Ok(new { mensaje = "Usuario registrado exitosamente", usuario });
         }
 
         [HttpGet("verificar")]
-        public IActionResult ObtenerUsuarios()
+        public async Task<IActionResult> GetTodosUsuarios()
         {
+            var usuarios = await _context.Usuarios.ToListAsync();
             return Ok(usuarios);
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObtenerUsuarioPorId(int id)
+        public async Task<IActionResult> GetUsuario(int id)
         {
-            var usuario = usuarios.FirstOrDefault(u => u.Id == id);
+            var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario == null)
-            {
-                return NotFound(new { mensaje = "Usuario no encontrado" });
-            }
+                return NotFound();
+
             return Ok(usuario);
         }
 
         [HttpPatch("{id}")]
-        public IActionResult ActualizarUsuarioParcial(int id, [FromBody] Usuario usuarioActualizado)
+        public async Task<IActionResult> UpdateUsuario(int id, [FromBody] Usuario usuarioActualizado)
         {
-            var usuarioExistente = usuarios.FirstOrDefault(u => u.Id == id);
-            if (usuarioExistente == null)
-            {
-                return NotFound(new { mensaje = "Usuario no encontrado" });
-            }
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+                return NotFound();
 
             if (!string.IsNullOrEmpty(usuarioActualizado.Nombre))
-                usuarioExistente.Nombre = usuarioActualizado.Nombre;
-            if (!string.IsNullOrEmpty(usuarioActualizado.Telefono))
-                usuarioExistente.Telefono = usuarioActualizado.Telefono;
-            if (!string.IsNullOrEmpty(usuarioActualizado.Pais))
-                usuarioExistente.Pais = usuarioActualizado.Pais;
-            if (!string.IsNullOrEmpty(usuarioActualizado.Departamento))
-                usuarioExistente.Departamento = usuarioActualizado.Departamento;
-            if (!string.IsNullOrEmpty(usuarioActualizado.Municipio))
-                usuarioExistente.Municipio = usuarioActualizado.Municipio;
-            if (!string.IsNullOrEmpty(usuarioActualizado.Direccion))
-                usuarioExistente.Direccion = usuarioActualizado.Direccion;
+                usuario.Nombre = usuarioActualizado.Nombre;
 
-            return Ok(new { mensaje = "Usuario actualizado exitosamente", usuarioExistente });
+            if (!string.IsNullOrEmpty(usuarioActualizado.Telefono))
+                usuario.Telefono = usuarioActualizado.Telefono;
+
+            if (!string.IsNullOrEmpty(usuarioActualizado.Direccion))
+                usuario.Direccion = usuarioActualizado.Direccion;
+
+            await _context.SaveChangesAsync();
+            return Ok(new { mensaje = "Usuario actualizado exitosamente", usuario });
         }
 
-
         [HttpDelete("{id}")]
-        public IActionResult EliminarUsuario(int id)
+        public async Task<IActionResult> DeleteUsuario(int id)
         {
-            var usuarioExistente = usuarios.FirstOrDefault(u => u.Id == id);
-            if (usuarioExistente == null)
-            {
-                return NotFound(new { mensaje = "Usuario no encontrado" });
-            }
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+                return NotFound();
 
-            usuarios.Remove(usuarioExistente);
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
             return Ok(new { mensaje = "Usuario eliminado exitosamente" });
         }
     }
