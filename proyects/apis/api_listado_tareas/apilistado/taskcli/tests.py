@@ -7,7 +7,7 @@ import uuid
 class TaskAPITestCase(APITestCase):
     
     def setUp(self):
-        # Crear una tarea de ejemplo
+        
         self.task = Task.objects.create(
             task="Tarea de ejemplo",
             status="T"
