@@ -13,10 +13,12 @@ namespace listado_net.Models
     {
         public Guid Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El nombre de la tarea es obligatorio")]
+        [StringLength(150, ErrorMessage = "El nombre no puede exceder los 150 caracteres")]
         public string TaskName { get; set; }  
 
-        [Required]
+        [Required(ErrorMessage = "El estado del progreso es obligatorio")]
+        [StringLength(15, ErrorMessage = "El nombre no puede exceder los 15 caracteres")]
         public TaskState Status { get; set; } 
 
         public DateTime CreatedAt { get; set; }  
