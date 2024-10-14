@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("listado_net")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1342ea341718485696240521f190bd51ed4324b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0a939dc1ef007313d64e7395c040a1fceb9ff5c")]
 [assembly: System.Reflection.AssemblyProductAttribute("listado_net")]
 [assembly: System.Reflection.AssemblyTitleAttribute("listado_net")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
